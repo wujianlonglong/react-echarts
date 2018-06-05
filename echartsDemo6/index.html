@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echarts</title>
+    <!-- 引入 echarts.js -->
+    <script src="../build/echarts.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '设备数量分布',
+          //  subtext: '数据来自网络'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: []
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            splitLine: {
+                show: false
+            },
+            show: false,
+            type: 'value',
+            boundaryGap: [0, 0.02],
+            // max: function(value) {
+            //     return value.max * 1.2;
+            // }
+        },
+        yAxis: {
+            splitLine: {       //网格线
+                show: false
+            },
+            axisTick: {       //y轴刻度线
+                show: false
+            },
+            axisLine: {       //y轴
+                show: false
+
+            },
+            show: true,
+            type: 'category',
+            data: ['上海','湖北','江苏','江西','安徽','浙江']
+        },
+        series: [
+            {
+               // name: '2012年',
+                type: 'bar',
+                data: [19325, 23438, 31000, 121594, 134141, 689000],
+                barWidth: 14,
+                itemStyle: {
+                    emphasis: {
+                        barBorderRadius: 7
+                    },
+                    normal: {
+                        label: {
+                            show: true,//是否展示
+                            position: 'right',
+                            textStyle: {
+                                fontWeight: 'bolder',
+                                fontSize: '12',
+                                fontFamily: '微软雅黑',
+                            }
+                        },
+                        barBorderRadius: 7,
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 1, 0,
+                            [
+                                {offset: 0, color: '#37BBF8'},
+                                {offset: 1, color: '#cee61e'}
+                            ]
+                        )
+                    }
+                }
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

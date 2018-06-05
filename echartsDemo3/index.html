@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echarts</title>
+    <!-- 引入 echarts.js -->
+    <script src="../build/echarts.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+
+        title: {
+            text: '设备增长趋势'
+        },
+        xAxis: {
+            axisLine: {       //y轴
+                show: false
+
+            },
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#81a1c7',
+                    opacity:0.5,
+                    type:'dashed'
+                }
+            },
+        },
+        yAxis: {
+            axisLine: {       //y轴
+                show: false
+
+            },
+            type: 'value',
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#81a1c7',
+                    opacity:0.5,
+                    type:'dashed'
+                }
+            },
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+                emphasis: {
+                    barBorderRadius: 7
+                },
+                normal: {
+                    label: {
+                        show: true,//是否展示
+                        position: 'right',
+                        textStyle: {
+                            fontWeight: 'bolder',
+                            fontSize: '12',
+                            fontFamily: '微软雅黑',
+                        }
+                    },
+                    barBorderRadius: 7,
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 1, 0,
+                        [
+                            {offset: 0, color: '#37BBF8'},
+                            {offset: 1, color: '#cee61e'}
+                        ]
+                    )
+                }
+            },
+            areaStyle:{
+                normal:{
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0, color:'#37BBF8'// 0% 处的颜色
+                        }, {
+                            offset: 1, color:'#fff'// 100% 处的颜色
+                        }],
+                        globalCoord: false // 缺省为 false
+                    },
+                    opacity:0.6
+                }
+            }
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
